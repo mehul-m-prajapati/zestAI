@@ -1,4 +1,4 @@
-# zestAI - AI-Powered SaaS Platform
+# zestAI
 
 A full-stack AI Software as a Service (SaaS) application built with the PERN stack. It provides users with a suite of powerful generative AI tools, accessible through a secure subscription-based model.
 
@@ -8,8 +8,8 @@ A full-stack AI Software as a Service (SaaS) application built with the PERN sta
 
 It offers a range of features designed to boost creativity and productivity:
 
-* *User Authentication: Secure sign-up, sign-in, and profile management powered by **Clerk*.
-* *Subscription Billing: Premium subscriptions managed through **Clerks billing features* to unlock access to advanced AI capabilities.
+* *User Authentication*: Secure sign-up, sign-in, and profile management powered by **Clerk*.
+* *Subscription Billing*: Premium subscriptions managed through **Clerks billing features* to unlock access to advanced AI capabilities.
 * *Article Generator*: Generate high-quality articles by simply providing a title and desired length.
 * *Blog Title Generator*: Get catchy and SEO-friendly blog titles from a keyword and category.
 * *Image Generator*: Create stunning visuals from a text prompt using generative AI.
@@ -52,15 +52,18 @@ Follow these instructions to get a copy of the project up and running on your lo
     ```
 
 2.  *Install backend dependencies:*
-    sh
+    ```
     cd server
     npm install
+    npm run dev
+    ```
 
 3.  *Install frontend dependencies:*
-    sh
+    ```
     cd ../client
     npm install
-
+    npm run dev
+    ```
 
 ### Environment Variables
 
@@ -75,24 +78,6 @@ AI_API_KEY="your_generative_ai_api_key"
 **Client (/client/.env):**
 
 VITE_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
-
----
-
-## Usage
-
-1.  *Start the backend server:*
-    sh
-    cd server
-    npm start
-
-    The server will run on http://localhost:5000 (or the port you configure).
-
-2.  *Start the frontend development server:*
-    sh
-    cd client
-    npm run dev
-
-    The application will be available at http://localhost:5173.
 
 ---
 
