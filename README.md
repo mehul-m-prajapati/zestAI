@@ -1,5 +1,3 @@
-# zestAI
-
 A full-stack AI Software as a Service (SaaS) application built with the PERN stack. It provides users with a suite of powerful generative AI tools, accessible through a secure subscription-based model.
 
 ---
@@ -13,7 +11,7 @@ It offers a range of features designed to boost creativity and productivity:
 * *Article Generator*: Generate high-quality articles by simply providing a title and desired length.
 * *Blog Title Generator*: Get catchy and SEO-friendly blog titles from a keyword and category.
 * *Image Generator*: Create stunning visuals from a text prompt using generative AI.
-* *Background Remover*: Upload an image to automatically get a transparent background.
+* *Background Remover*: Upload an image to get a transparent background automatically.
 * *Image Object Remover*: Remove unwanted objects from any image by describing them.
 * *Resume Analyzer*: Upload a resume to receive a comprehensive analysis and improvement suggestions.
 
@@ -21,21 +19,17 @@ It offers a range of features designed to boost creativity and productivity:
 
 ## 🛠 Tech Stack
 
-This project is built with a modern and robust technology stack:
-
-* *Frontend*: React.js, Tailwind CSS
-* *Backend*: Node.js, Express.js
-* *Database*: Serverless PostgreSQL by Neon
-* *Authentication & Subscriptions*: Clerk
-* *API Communication*: Axios
-* *AI Integrations*: Third-party Generative AI APIs
-* *Deployment*: Vercel
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: Node.js, Express.js
+- **Database**: Serverless PostgreSQL by Neon
+- **Authentication & Subscriptions**: Clerk
+- **API Communication**: Axios
+- **AI Integrations**: Third-party Generative AI APIs
+- **Deployment**: Vercel
 
 ---
 
 ## 🚀 Getting Started
-
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
