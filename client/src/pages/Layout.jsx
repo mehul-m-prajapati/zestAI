@@ -1,8 +1,14 @@
-import React from 'react'
+import { Outlet, useNavigate } from "react-router-dom"
+
+
 
 function Layout() {
   return (
-    <div>Layout</div>
+    <div>
+        Layout
+
+        <Outlet />
+    </div>
   )
 }
 
