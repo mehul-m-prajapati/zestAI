@@ -13,7 +13,7 @@ function Layout() {
   const [sidebar, setSidebar] = useState(false);
 
   return user ? (
-    <div>
+    <div className="flex flex-col items-start justify-start h-screen">
         <nav className='w-full px-8 min-h-14 flex items-center justify-between border-b border-gray-200'>
             <img src={assets.logo} className='cursor-pointer w-12 sm:w-14' alt='' onClick={() => navigate('/')} />
             {sidebar ? (

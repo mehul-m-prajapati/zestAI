@@ -5,3 +5,11 @@
 @theme {
     --color-primary: #5044E5;
 }
+
+.reset-tw,.reset-tw *{
+   all:revert !important;  /*  ordered/unordered list */
+}
+
+.cl-drawerRoot{
+  z-index: 10;
+}
