@@ -3,6 +3,7 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import { Heart } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { dummyPublishedCreationData } from '../assets/assets'
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -14,7 +15,7 @@ const Community = () => {
   const { getToken } = useAuth();
 
   const fetchCreations = async () => {
-
+    setCreations(dummyPublishedCreationData);
   };
 
   const imageLikeToggle = async (id) => {
