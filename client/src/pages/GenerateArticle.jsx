@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
-function WriteArticle() {
+function GenerateArticle() {
 
   const articleLength = [
     { length: 800, text: 'Short (500-800 words)' },
@@ -104,4 +104,4 @@ function WriteArticle() {
   )
 }
 
-export default WriteArticle
+export default GenerateArticle

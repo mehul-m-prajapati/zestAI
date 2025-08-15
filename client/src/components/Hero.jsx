@@ -15,7 +15,7 @@ const Hero = () => {
             </h1>
             <p className='mt-4 max-w-xs sm:max-w-lg 2xl:max-w-xl m-auto max-sm:text-s
             text-gray-600'>Transform your content creation with our suite of premium AI tools.
-            Write articles, generate images, and enhance your workflow.</p>
+            Create articles, generate images, and enhance your workflow.</p>
         </div>
 
         <div className='flex flex-wrap justify-center gap-4 text-sm max-sm:text-xs'>
