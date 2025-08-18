@@ -21,14 +21,37 @@ function GenerateArticle() {
   const [selectedLength, setSelectedLength] = useState(articleLength[0]);
   const {getToken} = useAuth();
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-  }
 
-  try {
+    try {
+        setLoading(true);
 
-  } catch (error) {
+        const prompt = `Write an article about ${inputVal} in ${selectedLength.text}`;
 
+        const resp = await axios.post('/api/ai/generate-article', {
+            prompt,
+            length: selectedLength.length
+        }, {
+            headers: {
+                Authorization: `Bearer ${await getToken()}`}
+            }
+        );
+
+        if (resp.status === 200) {
+            setContent(resp.data.content);
+        }
+        else {
+            toast.error(resp.message);
+        }
+
+    }
+    catch (error) {
+        toast.error(error.message);
+    }
+    finally {
+        setLoading(false);
+    }
   }
 
 
@@ -76,7 +99,7 @@ function GenerateArticle() {
             </form>
 
             {/* right col */}
-            <div className='w-full max-w-lg p-4 bg-white rounded-lg flex flex-col border border-gray-200
+            <div className='w-full max-w-2xl p-4 bg-white rounded-lg flex flex-col border border-gray-200
              min-h-96 max-h-[600px]'>
 
                 <div className='flex items-center gap-3'>

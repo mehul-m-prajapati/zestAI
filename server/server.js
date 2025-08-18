@@ -6,7 +6,7 @@ import aiRouter from './routes/ai.routes.js'
 import userRouter from './routes/user.routes.js'
 import connectCloudinary from './config/cloudinary.js'
 
-await connectCloudinary();  
+await connectCloudinary();
 
 // constants
 const app = express();
@@ -20,7 +20,7 @@ app.use(clerkMiddleware());
 
 // routes
 app.get('/', (req, res) => {
-    res.send('Backend API working ...');
+    res.send('Project: zestAI ... Backend API working');
 })
 
 // protected routes

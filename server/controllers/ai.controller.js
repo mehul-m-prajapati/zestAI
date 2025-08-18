@@ -1,4 +1,4 @@
-import sql from '../config/db'
+import sql from '../config/db.js'
 import OpenAI from 'openai'
 import {clerkClient} from '@clerk/express'
 import axios from 'axios'

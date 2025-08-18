@@ -4,7 +4,7 @@ import {Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
 import Dashboard from './pages/Dashboard'
-import GenerateArticle from './pages/WriteArticle'
+import GenerateArticle from './pages/GenerateArticle'
 import BlogTitles from './pages/BlogTitles'
 import GenerateImages from './pages/GenerateImages'
 import RemoveBackground from './pages/RemoveBackground'
@@ -14,7 +14,9 @@ import Community from './pages/Community'
 
 import {Toaster} from 'react-hot-toast'
 
+
 function App() {
+
   return (
     <div>
         <Toaster />
