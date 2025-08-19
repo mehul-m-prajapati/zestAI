@@ -143,6 +143,29 @@ export const generateImage = async (req, res) => {
 export const removeImageBackground = async (req, res) => {
     try {
 
+        const {userId} = req.auth();
+        const plan = req.plan;
+        const image= req.file;
+
+        if (plan != 'pro') {
+            return res.status(402).json({message: "This feature is only available for pro subscriptions."});
+        }
+
+        const { secure_url } = await cloudinary.uploader.upload(image.path, {
+            transformation: [
+                {
+                    effect: 'background_removal',
+                    background_removal: 'remove_the_background'
+                }
+            ]
+        });
+
+        //storing in database with query
+        await sql`insert into creations (user_id,prompt,m_content,m_type)
+        VALUES (${userId},'Remove background from image',${secure_url},'image')`;
+
+        res.status(200).json({ content: secure_url });
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message });
