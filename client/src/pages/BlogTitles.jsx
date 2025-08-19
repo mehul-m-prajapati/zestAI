@@ -23,6 +23,31 @@ const BlogTitles = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
+    try {
+        setLoading(true);
+
+        const prompt = `Generate a blog title for the keyword ${input} in the category ${selectedCategory}`;
+
+        const resp = await axios.post('/api/ai/generate-blog-title', {prompt}, {
+            headers: {
+                Authorization: `Bearer ${await getToken()}`
+            }
+        });
+
+        if (resp.status === 200) {
+            setContent(resp.data.content);
+        }
+        else {
+            toast.error(resp.message);
+        }
+    }
+    catch (error) {
+        toast.error(error.message)
+    }
+    finally {
+        setLoading(false);
+    }
+
   };
 
   return (
