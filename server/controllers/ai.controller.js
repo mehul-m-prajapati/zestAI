@@ -109,6 +109,31 @@ export const generateBlogTitle = async (req, res) => {
 export const generateImage = async (req, res) => {
     try {
 
+        const {userId} = req.auth();
+        const {prompt, publish} = req.body;
+        const plan = req.plan;
+
+        if (plan != 'pro') {
+            return res.status(402).json({message: "This feature is only available for pro subscriptions."});
+        }
+
+        const formData = new FormData();
+        formData.append('prompt', prompt);
+
+        const resp = await axios.post('https://clipdrop-api.co/text-to-image/v1', formData, {
+            headers: {'x-api-key': process.env.CLIPDROP_API_KEY},
+            responseType: 'arraybuffer',
+        });
+
+        const base64Image = `data:image/png;base64,${Buffer.from(resp.data, 'binary').toString('base64')}`;
+        const { secure_url } = await cloudinary.uploader.upload(base64Image);
+
+        //storing in database with query
+        await sql`insert into creations (user_id,prompt,m_content,m_type,publish)
+            VALUES (${userId},${prompt},${secure_url},'image',${publish ?? false})`;
+
+        res.status(200).json({content: secure_url});
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message });

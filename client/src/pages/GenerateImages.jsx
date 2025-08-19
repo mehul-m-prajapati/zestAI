@@ -23,6 +23,29 @@ const GenerateImages = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
+    try {
+        setLoading(true);
+
+        const prompt = `Generate an image of ${input} in the style ${selectedStyle}`;
+
+        const resp = await axios.post('/api/ai/generate-image', {prompt, publish}, {
+            headers: { Authorization: `Bearer ${await getToken()}` }
+        })
+
+        if (resp.status === 200) {
+            // content is secure_url of cloudinary image
+            setContent(resp.data.content);
+        }
+        else {
+            toast.error(resp.message);
+        }
+    }
+    catch (error) {
+        toast.error(error.message);
+    }
+    finally {
+        setLoading(false);
+    }
   };
 
   return (
