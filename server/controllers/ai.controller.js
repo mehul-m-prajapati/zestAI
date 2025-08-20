@@ -99,7 +99,7 @@ export const generateBlogTitle = async (req, res) => {
         }
 
         res.status(200).json({content});
-        
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message });
@@ -174,6 +174,29 @@ export const removeImageBackground = async (req, res) => {
 
 export const removeImageObject = async (req, res) => {
     try {
+
+        const { userId } = req.auth();
+        const { object } = req.body;
+        const image  = req.file;
+        const plan = req.plan;
+
+
+        console.log(object, plan);
+
+        if (plan != 'pro') {
+            return res.status(402).json({message: "This feature is only available for pro subscriptions."});
+        }
+
+        const { secure_url } = await cloudinary.uploader.upload(image.path, {
+            transformation: [{effect: `gen_remove:${object}`}],
+            resource_type: 'image'
+        });
+
+        //storing in database with query
+        await sql`insert into creations (user_id,prompt,m_content,m_type)
+        VALUES (${userId},${`Remove ${object} from image`},${secure_url},'image')`;
+
+        res.status(200).json({content: secure_url});
 
     } catch (error) {
         console.log(error);

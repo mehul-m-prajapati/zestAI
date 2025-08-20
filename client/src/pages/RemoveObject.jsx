@@ -18,6 +18,36 @@ const RemoveObject = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
+    try {
+
+        setLoading(true);
+
+        if (object.split('/[\s,]+/').length > 1) {
+            return toast('Please enter only one object name');
+        }
+
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('object', object);
+
+        const resp = await axios.post('/api/ai/remove-image-object', formData, {
+            headers: { Authorization: `Bearer ${await getToken()}` }
+        });
+
+        if (resp.status === 200) {
+            setContent(resp.data.content);
+        }
+        else {
+            toast.error(resp.message);
+        }
+
+    }
+    catch (error) {
+        toast.error(error.message);
+    }
+    finally {
+        setLoading(false);
+    }
   };
 
   return (
