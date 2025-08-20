@@ -14,11 +14,10 @@ import Community from './pages/Community'
 
 import {Toaster} from 'react-hot-toast'
 
-
 function App() {
 
   return (
-    <div>
+    <div className='bg-white dark:bg-gray-800 text-black dark:text-white transition-colors duration-300'>
         <Toaster />
         <Routes>
             <Route path='/' element={<Home />} />

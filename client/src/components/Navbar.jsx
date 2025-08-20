@@ -2,6 +2,7 @@ import {assets} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import {UserButton, useClerk, useUser} from'@clerk/clerk-react'
+import ThemeToggle from '../components/ThemeToggle'
 
 
 function Navbar() {
@@ -12,7 +13,10 @@ function Navbar() {
   {/* if user is login then will show user profile else will show login/getstarted */}
   return (
     <div className='fixed z-5 w-full backdrop:backdrop-blur-2xl flex justify-between items-center py-3 px-4 sm:px20 xl:px-32'>
-        <img src={assets.logo} alt="" className='w-15 sm:w-20 cursor-pointer' onClick={() => navigate('/')} />
+        <ThemeToggle></ThemeToggle>
+
+        {/*
+        <img src={assets.logo} alt="" className='w-15 sm:w-18 cursor-pointer' onClick={() => navigate('/')} />*/}
         {
             user ? <UserButton /> :
             (

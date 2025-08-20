@@ -57,9 +57,9 @@ function GenerateArticle() {
 
   return (
     <div>
-        <div className='h-full overflow-y-scroll p-6 flex items-start flex-wrap gap-4 text-slate-700'>
+        <div className='h-full overflow-y-scroll p-6 flex items-start flex-wrap gap-4'>
             {/* leftcol */}
-            <form onSubmit={onSubmitHandler} className='w-full max-w-lg p-4 bg-white rounded-lg
+            <form onSubmit={onSubmitHandler} className='w-full max-w-lg p-4 rounded-lg
             border border-gray-200' action="">
 
                 <div className='flex items-center gap-3'>
@@ -80,7 +80,7 @@ function GenerateArticle() {
                         <span onClick={() => setSelectedLength(item)}
                             className={`text-xs px-4 py-1 border rounded-full cursor-pointer
                             ${selectedLength.text === item.text ? 'bg-blue-50 text-blue-700'
-                                : 'text-gray-500 border-gray-300'}`}
+                                : 'border-gray-300'}`}
                             key={index}>
                         {item.text}
                         </span>
@@ -89,7 +89,7 @@ function GenerateArticle() {
 
                 <br />
 
-                <button disabled={loading} className='w-full sm:w-[50%] flex justify-center items-center gap-2 bg-gradient-to-r
+                <button disabled={loading} className='w-full sm:w-[40%] flex justify-center items-center gap-2 bg-gradient-to-r
                  from-[#226BFF] to-[#226BFF] text-white px-4 py-2 mt-6 text-sm rounded-lg cursor-pointer'>
                     {
                         loading ? <span className="w-4 h-4 my-1 rounded-full border-2 border-t-transparent animate-spin"></span>
@@ -99,7 +99,7 @@ function GenerateArticle() {
             </form>
 
             {/* right col */}
-            <div className='w-full max-w-2xl p-4 bg-white rounded-lg flex flex-col border border-gray-200
+            <div className='w-full max-w-2xl p-4 rounded-lg flex flex-col border border-gray-200
              min-h-96 max-h-[600px]'>
 
                 <div className='flex items-center gap-3'>

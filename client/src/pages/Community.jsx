@@ -32,7 +32,7 @@ const Community = () => {
     <div className="flex-1 h-full flex flex-col gap-4 p-6">
       Creations
 
-      <div className="bg-white h-full w-full rounded-xl overflow-y-scroll">
+      <div className="h-full w-full rounded-xl overflow-y-scroll">
         {creations.map((creation, index) => (
           <div
             key={index}
