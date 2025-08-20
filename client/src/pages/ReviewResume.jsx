@@ -87,7 +87,7 @@ const ReviewResume = () => {
         </form>
 
         {/* Right column */}
-        <div className="w-full max-w-2xl p-4 rounded-lg flex flex-col border border-gray-200 min-h-96 max-h-[600px]">
+        <div className="w-full max-w-2xl p-4 rounded-2xl flex flex-col border border-gray-200 min-h-96 max-h-[600px]">
           <div className="flex items-center gap-3">
             <FileText className="w-5 h-5 text-[#00DA83]" />
             <h1 className="text-xl font-semibold">Analysis Result</h1>
