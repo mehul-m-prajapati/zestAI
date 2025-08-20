@@ -4,7 +4,7 @@ import {clerkClient} from '@clerk/express'
 import axios from 'axios'
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
-
+import pdf from 'pdf-parse/lib/pdf-parse.js'
 
 const openai = new OpenAI({
     apiKey: process.env.GEMINI_API_KEY,
@@ -174,14 +174,10 @@ export const removeImageBackground = async (req, res) => {
 
 export const removeImageObject = async (req, res) => {
     try {
-
         const { userId } = req.auth();
         const { object } = req.body;
         const image  = req.file;
         const plan = req.plan;
-
-
-        console.log(object, plan);
 
         if (plan != 'pro') {
             return res.status(402).json({message: "This feature is only available for pro subscriptions."});
@@ -206,7 +202,40 @@ export const removeImageObject = async (req, res) => {
 
 export const resumeReview = async (req, res) => {
     try {
+        const { userId } = req.auth();
+        const resume = req.file;
+        const plan = req.plan;
 
+        if (plan != 'pro') {
+            return res.status(402).json({message: "This feature is only available for pro subscriptions."});
+        }
+
+        if (resume.size > 5 * 1024 * 1024) {
+            return res.staus(406).json({ success: false, message: "Resume file size exceeds allowed size (5MB). " })
+        }
+
+        const dataBuf = fs.readFileSync(resume.path);
+        const pdfData = await pdf(dataBuf);
+        const prompt = `Review the following resume and provide constructive feedback on its strength, weakness, and area for improvement. Resume Content:\n\n${pdfData.text}`;
+
+        const resp = await openai.chat.completions.create({
+            model: 'gemini-2.0-flash',
+            messages: [
+                {
+                    role: 'user',
+                    content: prompt
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 2000,
+        });
+
+        const content = resp.choices[0].message.content;
+        //storing in database with query
+        await sql`insert into creations (user_id,prompt,m_content,m_type)
+        VALUES (${userId},'Review the uploaded resume',${content},'resume-review')`;
+
+        res.status(200).json({content});
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message });

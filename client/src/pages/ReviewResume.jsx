@@ -16,6 +16,31 @@ const ReviewResume = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+
+        setLoading(true);
+
+        const formData = new FormData();
+        formData.append('resume', input);
+
+        const resp = await axios.post('/api/ai/resume-review', formData, {
+            headers: { Authorization: `Bearer ${await getToken()}` }
+        });
+
+        if (resp.status === 200) {
+            setContent(resp.data.content);
+        }
+        else {
+            toast.error(resp.message);
+        }
+    }
+    catch (error) {
+        toast.error(error.message);
+    }
+    finally {
+        setLoading(false);
+    }
   };
 
   return (
@@ -76,7 +101,7 @@ const ReviewResume = () => {
               </div>
             </div>
           ) : (
-            <div className="mt-3 h-full overflow-y-scroll text-sm text-slate-600">
+            <div className="mt-3 h-full overflow-y-scroll text-sm text-slate-600 dark:text-gray-50">
               <div className="reset-tw">
                 <Markdown>{content}</Markdown>
               </div>
