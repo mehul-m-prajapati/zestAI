@@ -16,10 +16,53 @@ const Community = () => {
 
   const fetchCreations = async () => {
     setCreations(dummyPublishedCreationData);
+    return;
+
+    try {
+        setLoading(true);
+
+        const resp = await axios.get('/api/user/get-user-creations', {
+            headers: { Authorization: `Bearer ${await getToken()}` },
+        });
+
+        if (resp.status === 200) {
+            setCreations(resp.data.creations);
+        }
+        else {
+            toast.error(resp.message);
+        }
+    }
+    catch (error) {
+        toast.error(error.message);
+    }
+    finally {
+        setLoading(false);
+    }
   };
 
   const imageLikeToggle = async (id) => {
 
+    try {
+        setLoading(true);
+
+        const resp = await axios.post('/api/user/toggle-like-creation', {
+            headers: { Authorization: `Bearer ${await getToken()}` },
+        });
+
+        if (resp.status === 200) {
+            toast.success(resp.data.message);
+            await fetchCreations();
+        }
+        else {
+            toast.error(resp.message);
+        }
+    }
+    catch (error) {
+        toast.error(error.message);
+    }
+    finally {
+        setLoading(false);
+    }
   };
 
   useEffect(() => {
