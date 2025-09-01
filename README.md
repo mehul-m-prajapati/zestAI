@@ -66,15 +66,15 @@ It offers a range of features designed to boost creativity and productivity:
 To run this project, you will need to add the following environment variables to a .env file in both the server and client directories.
 
 **Server (/server/.env):**
-
+```
 DATABASE_URL="your_neon_database_url"
 CLERK_SECRET_KEY="your_clerk_secret_key"
 AI_API_KEY="your_generative_ai_api_key"
-
+```
 **Client (/client/.env):**
-
+```
 VITE_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
-
+```
 ---
 
 ## 📂 Project Structure

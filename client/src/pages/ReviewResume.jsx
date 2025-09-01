@@ -95,7 +95,7 @@ const ReviewResume = () => {
 
           {!content ? (
             <div className="flex-1 flex justify-center items-center">
-              <div className="text-sm flex flex-col items-center gap-5 text-gray-400">
+              <div className="text-sm flex flex-col items-center gap-5 text-gray-400 dark:text-gray-100">
                 <FileText className="w-9 h-9" />
                 <p>Upload a resume and click "Review Resume" to get started</p>
               </div>
